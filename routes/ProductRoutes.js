@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var ProductController = require('../controllers/ProductController.js');
+var multer = require('../utils/multer');
 
 /*
  * GET
@@ -15,12 +16,12 @@ router.get('/:id', ProductController.show);
 /*
  * POST
  */
-router.post('/', ProductController.create);
+router.post('/', multer.single('image'), ProductController.create);
 
 /*
  * PUT
  */
-router.put('/:id', ProductController.update);
+router.put('/:id', multer.single('image'), ProductController.update);
 
 /*
  * DELETE
