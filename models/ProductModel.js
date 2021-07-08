@@ -7,7 +7,7 @@ var ProductSchema = new Schema({
   'salePrice': Number,
   'description': String,
   'category': [{ type: Schema.Types.ObjectId, ref: 'Category' }],
-  'image': Array,
+  'image': String,
   'rate': Number,
   'user': {
     type: Schema.Types.ObjectId,
