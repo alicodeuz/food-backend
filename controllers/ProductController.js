@@ -58,7 +58,7 @@ module.exports = {
       salePrice: req.body.salePrice,
       description: req.body.description,
       category: req.body.category,
-      image: req.file,
+      image: req.file?.path.replace("public", ""),
       rate: req.body.rate,
       user: req.body.user
     });

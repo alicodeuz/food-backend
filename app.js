@@ -43,7 +43,7 @@ app.use(function (err, req, res, next) {
 mongoose
   .connect(database, { useNewUrlParser: true, useFindAndModify: false })
   .then(() => {
-    app.listen(8000, () => console.log('App is running on port 8000'));
+    app.listen(8002, () => console.log('App is running on port 8000'));
   })
   .catch((err) => console.log(err));
 
