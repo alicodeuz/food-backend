@@ -8,14 +8,13 @@ var storage = multer.diskStorage({
   },
   filename: function (req, file, cb) {
     const { edit, oldImageName } = req.body;
+    // Replace image if it is exist
     if (edit && oldImageName) {
       const originalFileName = oldImageName.split('/')?.slice(-1)[0];
-      console.log(originalFileName);
       cb(null, `${originalFileName}`);
     } else {
       cb(null, `${nanoid()}${path.extname(file.originalname)}`);
     }
-
   }
 })
 
