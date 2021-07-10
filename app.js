@@ -10,8 +10,13 @@ var categoryRouter = require('./routes/CategoryRoutes');
 var indexRoutes = require('./routes/index');
 const database = "mongodb://localhost/food-backend";
 const mongoose = require('mongoose');
+const swaggerUi = require('swagger-ui-express')
+const swaggerFile = require('./swagger_output.json')
 var app = express();
 
+app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
+
+// require('./routes/index')(app)
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');

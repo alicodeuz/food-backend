@@ -100,7 +100,7 @@ module.exports = {
       Product.salePrice = req.body.salePrice ? req.body.salePrice : Product.salePrice;
       Product.description = req.body.description ? req.body.description : Product.description;
       Product.category = req.body.category ? req.body.category : Product.category;
-      Product.image = req.file.path ? req.file.path.replace('public', '') : Product.image;
+      Product.image = req.file?.path ? req.file?.path?.replace('public', '') : Product.image;
       Product.rate = req.body.rate ? req.body.rate : Product.rate;
       Product.user = req.body.user ? req.body.user : Product.user;
 
@@ -131,7 +131,7 @@ module.exports = {
         });
       }
 
-      return res.status(204).json();
+      return res.status(204).json({ success: true });
     });
   }
 };
