@@ -1,4 +1,5 @@
 var ProductModel = require('../models/ProductModel.js');
+const { deleteImage } = require('../utils/index.js');
 
 /**
  * ProductController.js
@@ -129,6 +130,11 @@ module.exports = {
           message: 'Error when deleting the Product.',
           error: err
         });
+      }
+      try {
+        deleteImage(Product.image);
+      } catch (err) {
+        console.log(err);
       }
 
       return res.status(204).json({ success: true });

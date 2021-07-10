@@ -1,9 +1,14 @@
 const multer = require('multer');
+const fs = require('fs');
 const path = require('path');
 const { nanoid } = require('nanoid')
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
+    let dir = `public/uploads`;
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
     cb(null, 'public/uploads');
   },
   filename: function (req, file, cb) {
