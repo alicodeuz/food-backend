@@ -7,9 +7,10 @@ var storage = multer.diskStorage({
     cb(null, 'public/uploads');
   },
   filename: function (req, file, cb) {
-    const { edit, image } = req.body;
-    if (edit && image) {
-      const originalFileName = image.split('/')?.slice(-1)[0];
+    const { edit, oldImageName } = req.body;
+    if (edit && oldImageName) {
+      const originalFileName = oldImageName.split('/')?.slice(-1)[0];
+      console.log(originalFileName);
       cb(null, `${originalFileName}`);
     } else {
       cb(null, `${nanoid()}${path.extname(file.originalname)}`);
