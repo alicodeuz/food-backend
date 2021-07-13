@@ -7,11 +7,13 @@ var indexRoutes = require('./routes/index');
 const database = "mongodb://localhost/food-backend";
 const mongoose = require('mongoose');
 const swaggerUi = require('swagger-ui-express')
-const swaggerFile = require('./swagger_output.json')
+const swaggerFile = require('./swagger_output.json');
+const compression = require('compression');
 var app = express();
 
-app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
+app.use(compression());
+app.use('*', cors());
 // require('./routes/index')(app)
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -24,6 +26,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRoutes);
+app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
