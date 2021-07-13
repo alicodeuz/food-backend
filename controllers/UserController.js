@@ -6,12 +6,8 @@ var UserModel = require('../models/UserModel.js');
  * @description :: Server-side logic for managing Users.
  */
 module.exports = {
-
-  /**
-   * UserController.list()
-   */
   list: function (req, res) {
-    console.log('Hey')
+    // #swagger.tags = ['Users']
     return UserModel.find(function (err, Users) {
       if (err) {
         return res.status(500).json({
@@ -24,10 +20,8 @@ module.exports = {
     });
   },
 
-  /**
-   * UserController.show()
-   */
   show: function (req, res) {
+    // #swagger.tags = ['Users']
     var id = req.params.id;
 
     return UserModel.findOne({ _id: id }, function (err, User) {
@@ -48,10 +42,8 @@ module.exports = {
     });
   },
 
-  /**
-   * UserController.create()
-   */
   create: function (req, res) {
+    // #swagger.tags = ['Users']
     var User = new UserModel({
       firstName: req.body.firstName,
       lastName: req.body.lastName,
@@ -75,10 +67,8 @@ module.exports = {
     });
   },
 
-  /**
-   * UserController.update()
-   */
   update: function (req, res) {
+    // #swagger.tags = ['Users']
     var id = req.params.id;
 
     return UserModel.findOne({ _id: id }, function (err, User) {
@@ -116,11 +106,8 @@ module.exports = {
       });
     });
   },
-
-  /**
-   * UserController.remove()
-   */
   remove: function (req, res) {
+    // #swagger.tags = ['Users']
     var id = req.params.id;
 
     return UserModel.findByIdAndRemove(id, function (err, User) {

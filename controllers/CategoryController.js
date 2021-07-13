@@ -11,6 +11,7 @@ module.exports = {
    * CategoryController.list()
    */
   list: function (req, res) {
+    // #swagger.tags = ['Category']
     return CategoryModel.find(function (err, Categorys) {
       if (err) {
         return res.status(500).json({
@@ -27,6 +28,7 @@ module.exports = {
    * CategoryController.show()
    */
   show: function (req, res) {
+    // #swagger.tags = ['Category']
     var id = req.params.id;
 
     return CategoryModel.findOne({ _id: id }, function (err, Category) {
@@ -47,10 +49,8 @@ module.exports = {
     });
   },
 
-  /**
-   * CategoryController.create()
-   */
   create: function (req, res) {
+    // #swagger.tags = ['Category']
     var Category = new CategoryModel({
       name: req.body.name,
       user: req.body.user,
@@ -70,10 +70,8 @@ module.exports = {
     });
   },
 
-  /**
-   * CategoryController.update()
-   */
   update: function (req, res) {
+    // #swagger.tags = ['Category']
     var id = req.params.id;
 
     return CategoryModel.findOne({ _id: id }, function (err, Category) {
@@ -108,10 +106,8 @@ module.exports = {
     });
   },
 
-  /**
-   * CategoryController.remove()
-   */
   remove: function (req, res) {
+    // #swagger.tags = ['Category']
     var id = req.params.id;
 
     return CategoryModel.findByIdAndUpdate(id, { isDeleted: true }, function (err, Category) {

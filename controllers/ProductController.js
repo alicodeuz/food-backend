@@ -7,11 +7,8 @@ const { deleteImage } = require('../utils/index.js');
  * @description :: Server-side logic for managing Products.
  */
 module.exports = {
-
-  /**
-   * ProductController.list()
-   */
   list: function (req, res) {
+    // #swagger.tags = ['Products']
     return ProductModel.find(function (err, Products) {
       if (err) {
         return res.status(500).json({
@@ -24,10 +21,8 @@ module.exports = {
     });
   },
 
-  /**
-   * ProductController.show()
-   */
   show: function (req, res) {
+    // #swagger.tags = ['Products']
     var id = req.params.id;
 
     return ProductModel.findOne({ _id: id }, function (err, Product) {
@@ -48,11 +43,8 @@ module.exports = {
     });
   },
 
-  /**
-   * ProductController.create()
-   */
   create: function (req, res) {
-    console.log(req.file, "image")
+    // #swagger.tags = ['Products']
     var Product = new ProductModel({
       name: req.body.name,
       price: req.body.price,
@@ -76,10 +68,8 @@ module.exports = {
     });
   },
 
-  /**
-   * ProductController.update()
-   */
   update: function (req, res) {
+    // #swagger.tags = ['Products']
     var id = req.params.id;
 
     return ProductModel.findOne({ _id: id }, function (err, Product) {
@@ -118,10 +108,8 @@ module.exports = {
     });
   },
 
-  /**
-   * ProductController.remove()
-   */
   remove: function (req, res) {
+    // #swagger.tags = ['Products']
     var id = req.params.id;
 
     return ProductModel.findByIdAndRemove(id, function (err, Product) {

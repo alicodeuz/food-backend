@@ -6,11 +6,8 @@ var OrderModel = require('../models/OrderModel.js');
  * @description :: Server-side logic for managing Orders.
  */
 module.exports = {
-
-  /**
-   * OrderController.list()
-   */
   list: function (req, res) {
+    // #swagger.tags = ['Orders']
     return OrderModel.find(function (err, Orders) {
       if (err) {
         return res.status(500).json({
@@ -23,10 +20,8 @@ module.exports = {
     });
   },
 
-  /**
-   * OrderController.show()
-   */
   show: function (req, res) {
+    // #swagger.tags = ['Orders']
     var id = req.params.id;
 
     return OrderModel.findOne({ _id: id }, function (err, Order) {
@@ -46,11 +41,8 @@ module.exports = {
       return res.json(Order);
     });
   },
-
-  /**
-   * OrderController.create()
-   */
   create: function (req, res) {
+    // #swagger.tags = ['Orders']
     var Order = new OrderModel({
       total: req.body.total,
       subTotal: req.body.subTotal,
@@ -76,10 +68,8 @@ module.exports = {
     });
   },
 
-  /**
-   * OrderController.update()
-   */
   update: function (req, res) {
+    // #swagger.tags = ['Orders']
     var id = req.params.id;
 
     return OrderModel.findOne({ _id: id }, function (err, Order) {
@@ -120,10 +110,9 @@ module.exports = {
     });
   },
 
-  /**
-   * OrderController.remove()
-   */
+
   remove: function (req, res) {
+    // #swagger.tags = ['Orders']
     var id = req.params.id;
 
     return OrderModel.findByIdAndRemove(id, function (err, Order) {

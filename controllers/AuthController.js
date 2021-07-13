@@ -4,16 +4,24 @@ const bcrypt = require('bcrypt');
 const { createToken } = require('../utils');
 
 exports.signUp = async (req, res) => {
-
-  /* #swagger.tags = ['Auth']
-    #swagger.description = 'Sign Up as a new user' */
-
-  /* #swagger.parameters['data'] = {
+  // #swagger.tags = ['Auth']
+  /* #swagger.parameters['body'] = {
         in: 'body',
-         type: 'object',
-         required: true,
-         description: 'First name',
-         schema: { $ref: '#/definitions/Auth' }
+        description: 'Login params',
+        required: true,
+        type: 'obj',
+        schema: { $ref: '#/definitions/SIGN_UP' }
+} */
+  /* #swagger.responses[200] = {
+          description: 'Response body',
+          schema: {$ref: '#/definitions/AUTH_RESPONSE'}
+  } */
+  /* #swagger.responses[400] = {
+          description: 'Password or Email is wrong',
+         schema: {
+            success: false,
+            msg: 'Email or password is wrong'
+        }
   } */
 
   console.log('Hello')
@@ -25,21 +33,40 @@ exports.signUp = async (req, res) => {
     const password = await bcrypt.hash(req.body.password, 8);
     let user = await Users.create({ ...req.body, password });
     let token = createToken({ userId: user._id });
-    res.status(201).json({ token, payload: user, success: true });
+    res.status(201).json({ token, user, success: true });
   } catch (error) {
     res.json({ success: false, msg: error.message })
   }
 }
 
 exports.login = async (req, res) => {
-  console.log('dsdsds')
+  // #swagger.tags = ['Auth']
+  /* #swagger.parameters['body'] = {
+        in: 'body',
+        description: 'Login params',
+        required: true,
+        type: 'obj',
+        schema: { $ref: '#/definitions/LOG_IN' }
+} */
+  /* #swagger.responses[200] = {
+          description: 'Response body',
+          schema: {$ref: '#/definitions/AUTH_RESPONSE'}
+  } */
+  /* #swagger.responses[400] = {
+          description: 'Password or Email is wrong',
+         schema: {
+            success: false,
+            msg: 'Email or password is wrong'
+        }
+  } */
   let { email, password } = req.body;
   let { error } = validate(req.body);
+
   if (error) return res.status(400).json({ success: false, msg: error.message });
   try {
     let user = await Users.findOne({ email })
     if (!user) {
-      return res.status(404).json({ success: false, msg: 'Email or password is incorrect' })
+      return res.status(400).json({ success: false, msg: 'Email or password is incorrect' })
     }
     const isPasswordCorrect = await bcrypt.compare(password, user.password);
     if (isPasswordCorrect) {

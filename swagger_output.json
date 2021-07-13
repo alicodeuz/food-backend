@@ -1,22 +1,129 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "1.0.0",
-    "title": "REST API",
-    "description": ""
+    "title": "Food API",
+    "description": "Simple POS sytem API",
+    "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "localhost:8002",
   "basePath": "/",
   "tags": [],
   "schemes": [
     "http"
   ],
+  "securityDefinitions": {
+    "apiKeyAuth": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "X-API-KEY",
+      "description": "Copy and paste token from data using \"Berear token\" using /auth/sign-up or /auth/login\""
+    }
+  },
   "consumes": [],
   "produces": [],
   "paths": {
+    "/auth/login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Login params",
+            "required": true,
+            "type": "obj",
+            "schema": {
+              "$ref": "#/definitions/LOG_IN"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Response body",
+            "schema": {
+              "$ref": "#/definitions/AUTH_RESPONSE"
+            }
+          },
+          "400": {
+            "description": "Password or Email is wrong",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "msg": {
+                  "type": "string",
+                  "example": "Email or password is wrong"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/sign-up": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Login params",
+            "required": true,
+            "type": "obj",
+            "schema": {
+              "$ref": "#/definitions/SIGN_UP"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Response body",
+            "schema": {
+              "$ref": "#/definitions/AUTH_RESPONSE"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Password or Email is wrong",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "msg": {
+                  "type": "string",
+                  "example": "Email or password is wrong"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      }
+    },
     "/category/": {
       "get": {
-        "tags": [],
+        "tags": [
+          "Category"
+        ],
         "description": "",
         "parameters": [],
         "responses": {
@@ -26,7 +133,9 @@
         }
       },
       "post": {
-        "tags": [],
+        "tags": [
+          "Category"
+        ],
         "description": "",
         "parameters": [
           {
@@ -60,7 +169,9 @@
     },
     "/category/{id}": {
       "get": {
-        "tags": [],
+        "tags": [
+          "Category"
+        ],
         "description": "",
         "parameters": [
           {
@@ -80,7 +191,9 @@
         }
       },
       "put": {
-        "tags": [],
+        "tags": [
+          "Category"
+        ],
         "description": "",
         "parameters": [
           {
@@ -118,7 +231,9 @@
         }
       },
       "delete": {
-        "tags": [],
+        "tags": [
+          "Category"
+        ],
         "description": "",
         "parameters": [
           {
@@ -140,7 +255,9 @@
     },
     "/users/": {
       "get": {
-        "tags": [],
+        "tags": [
+          "Users"
+        ],
         "description": "",
         "parameters": [],
         "responses": {
@@ -150,7 +267,9 @@
         }
       },
       "post": {
-        "tags": [],
+        "tags": [
+          "Users"
+        ],
         "description": "",
         "parameters": [
           {
@@ -199,7 +318,9 @@
     },
     "/users/{id}": {
       "get": {
-        "tags": [],
+        "tags": [
+          "Users"
+        ],
         "description": "",
         "parameters": [
           {
@@ -219,7 +340,9 @@
         }
       },
       "put": {
-        "tags": [],
+        "tags": [
+          "Users"
+        ],
         "description": "",
         "parameters": [
           {
@@ -272,7 +395,9 @@
         }
       },
       "delete": {
-        "tags": [],
+        "tags": [
+          "Users"
+        ],
         "description": "",
         "parameters": [
           {
@@ -294,7 +419,9 @@
     },
     "/orders/": {
       "get": {
-        "tags": [],
+        "tags": [
+          "Orders"
+        ],
         "description": "",
         "parameters": [],
         "responses": {
@@ -304,7 +431,9 @@
         }
       },
       "post": {
-        "tags": [],
+        "tags": [
+          "Orders"
+        ],
         "description": "",
         "parameters": [
           {
@@ -359,7 +488,9 @@
     },
     "/orders/{id}": {
       "get": {
-        "tags": [],
+        "tags": [
+          "Orders"
+        ],
         "description": "",
         "parameters": [
           {
@@ -379,7 +510,9 @@
         }
       },
       "put": {
-        "tags": [],
+        "tags": [
+          "Orders"
+        ],
         "description": "",
         "parameters": [
           {
@@ -438,7 +571,9 @@
         }
       },
       "delete": {
-        "tags": [],
+        "tags": [
+          "Orders"
+        ],
         "description": "",
         "parameters": [
           {
@@ -460,7 +595,9 @@
     },
     "/products/": {
       "get": {
-        "tags": [],
+        "tags": [
+          "Products"
+        ],
         "description": "",
         "parameters": [],
         "responses": {
@@ -470,7 +607,9 @@
         }
       },
       "post": {
-        "tags": [],
+        "tags": [
+          "Products"
+        ],
         "description": "",
         "parameters": [
           {
@@ -516,7 +655,9 @@
     },
     "/products/{id}": {
       "get": {
-        "tags": [],
+        "tags": [
+          "Products"
+        ],
         "description": "",
         "parameters": [
           {
@@ -536,7 +677,9 @@
         }
       },
       "put": {
-        "tags": [],
+        "tags": [
+          "Products"
+        ],
         "description": "",
         "parameters": [
           {
@@ -586,7 +729,9 @@
         }
       },
       "delete": {
-        "tags": [],
+        "tags": [
+          "Products"
+        ],
         "description": "",
         "parameters": [
           {
@@ -607,5 +752,130 @@
       }
     }
   },
-  "definitions": {}
+  "definitions": {
+    "LOG_IN": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "example": "admin@mail.ru"
+        },
+        "password": {
+          "type": "string",
+          "example": "123456"
+        }
+      },
+      "required": [
+        "email",
+        "password"
+      ]
+    },
+    "SIGN_UP": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "example": "admin@mail.ru"
+        },
+        "password": {
+          "type": "string",
+          "example": "123456"
+        },
+        "firstName": {
+          "type": "string",
+          "example": ""
+        },
+        "lastName": {
+          "type": "string",
+          "example": ""
+        },
+        "lang": {
+          "type": "string",
+          "example": ""
+        },
+        "image": {
+          "type": "string",
+          "example": ""
+        },
+        "phone": {
+          "type": "string",
+          "example": ""
+        },
+        "address": {
+          "type": "string",
+          "example": ""
+        }
+      },
+      "required": [
+        "email",
+        "password"
+      ]
+    },
+    "AUTH_RESPONSE": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string",
+          "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGVkYTFkZmNjMDAyZTY2OGM1ZDQ5NjMiLCJpYXQiOjE2MjYxODYyMDcsImV4cCI6MTYyNjIyMjIwN30.whBHL9YH-TYUHwAySlexSxkQKCAKxI6g603qwweZuEQ"
+        },
+        "user": {
+          "type": "object",
+          "properties": {
+            "firstName": {
+              "type": "string",
+              "example": ""
+            },
+            "lastName": {
+              "type": "string",
+              "example": ""
+            },
+            "lang": {
+              "type": "string",
+              "example": ""
+            },
+            "image": {
+              "type": "string",
+              "example": ""
+            },
+            "email": {
+              "type": "string",
+              "example": "aka@mail.ru"
+            },
+            "password": {
+              "type": "string",
+              "example": "$2b$08$cHKkEquLLVfvUpbDsVtiiuh5YDCdkurTWkC9CRCrcubcMiLZdI0M."
+            },
+            "phone": {
+              "type": "string",
+              "example": ""
+            },
+            "address": {
+              "type": "string",
+              "example": ""
+            },
+            "createdAt": {
+              "type": "string",
+              "example": "2021-07-13T14:23:25.696Z"
+            },
+            "updatedAt": {
+              "type": "string",
+              "example": "2021-07-13T14:23:25.696Z"
+            },
+            "_id": {
+              "type": "string",
+              "example": "60eda1dfcc002e668c5d4963"
+            },
+            "__v": {
+              "type": "number",
+              "example": 0
+            }
+          }
+        },
+        "success": {
+          "type": "boolean",
+          "example": true
+        }
+      }
+    }
+  }
 }
