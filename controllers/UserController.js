@@ -12,7 +12,7 @@ module.exports = {
    */
   list: function (req, res) {
     console.log('Hey')
-    UserModel.find(function (err, Users) {
+    return UserModel.find(function (err, Users) {
       if (err) {
         return res.status(500).json({
           message: 'Error when getting User.',
@@ -30,7 +30,7 @@ module.exports = {
   show: function (req, res) {
     var id = req.params.id;
 
-    UserModel.findOne({ _id: id }, function (err, User) {
+    return UserModel.findOne({ _id: id }, function (err, User) {
       if (err) {
         return res.status(500).json({
           message: 'Error when getting User.',
@@ -63,7 +63,7 @@ module.exports = {
       address: req.body.address
     });
 
-    User.save(function (err, User) {
+    return User.save(function (err, User) {
       if (err) {
         return res.status(500).json({
           message: 'Error when creating User',
@@ -81,7 +81,7 @@ module.exports = {
   update: function (req, res) {
     var id = req.params.id;
 
-    UserModel.findOne({ _id: id }, function (err, User) {
+    return UserModel.findOne({ _id: id }, function (err, User) {
       if (err) {
         return res.status(500).json({
           message: 'Error when getting User',
@@ -123,7 +123,7 @@ module.exports = {
   remove: function (req, res) {
     var id = req.params.id;
 
-    UserModel.findByIdAndRemove(id, function (err, User) {
+    return UserModel.findByIdAndRemove(id, function (err, User) {
       if (err) {
         return res.status(500).json({
           message: 'Error when deleting the User.',

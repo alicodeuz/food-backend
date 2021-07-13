@@ -12,7 +12,7 @@ module.exports = {
    * ProductController.list()
    */
   list: function (req, res) {
-    ProductModel.find(function (err, Products) {
+    return ProductModel.find(function (err, Products) {
       if (err) {
         return res.status(500).json({
           message: 'Error when getting Product.',
@@ -30,7 +30,7 @@ module.exports = {
   show: function (req, res) {
     var id = req.params.id;
 
-    ProductModel.findOne({ _id: id }, function (err, Product) {
+    return ProductModel.findOne({ _id: id }, function (err, Product) {
       if (err) {
         return res.status(500).json({
           message: 'Error when getting Product.',
@@ -64,7 +64,7 @@ module.exports = {
       user: req.body.user
     });
 
-    Product.save(function (err, Product) {
+    return Product.save(function (err, Product) {
       if (err) {
         return res.status(500).json({
           message: 'Error when creating Product',
@@ -82,7 +82,7 @@ module.exports = {
   update: function (req, res) {
     var id = req.params.id;
 
-    ProductModel.findOne({ _id: id }, function (err, Product) {
+    return ProductModel.findOne({ _id: id }, function (err, Product) {
       if (err) {
         return res.status(500).json({
           message: 'Error when getting Product',
@@ -124,7 +124,7 @@ module.exports = {
   remove: function (req, res) {
     var id = req.params.id;
 
-    ProductModel.findByIdAndRemove(id, function (err, Product) {
+    return ProductModel.findByIdAndRemove(id, function (err, Product) {
       if (err) {
         return res.status(500).json({
           message: 'Error when deleting the Product.',

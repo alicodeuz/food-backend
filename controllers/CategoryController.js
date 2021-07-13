@@ -11,7 +11,7 @@ module.exports = {
    * CategoryController.list()
    */
   list: function (req, res) {
-    CategoryModel.find(function (err, Categorys) {
+    return CategoryModel.find(function (err, Categorys) {
       if (err) {
         return res.status(500).json({
           message: 'Error when getting Category.',
@@ -29,7 +29,7 @@ module.exports = {
   show: function (req, res) {
     var id = req.params.id;
 
-    CategoryModel.findOne({ _id: id }, function (err, Category) {
+    return CategoryModel.findOne({ _id: id }, function (err, Category) {
       if (err) {
         return res.status(500).json({
           message: 'Error when getting Category.',
@@ -58,7 +58,7 @@ module.exports = {
       count: req.body.count
     });
 
-    Category.save(function (err, Category) {
+    return Category.save(function (err, Category) {
       if (err) {
         return res.status(500).json({
           message: 'Error when creating Category',
@@ -76,7 +76,7 @@ module.exports = {
   update: function (req, res) {
     var id = req.params.id;
 
-    CategoryModel.findOne({ _id: id }, function (err, Category) {
+    return CategoryModel.findOne({ _id: id }, function (err, Category) {
       if (err) {
         return res.status(500).json({
           message: 'Error when getting Category',
@@ -114,7 +114,7 @@ module.exports = {
   remove: function (req, res) {
     var id = req.params.id;
 
-    CategoryModel.findByIdAndUpdate(id, { isDeleted: true }, function (err, Category) {
+    return CategoryModel.findByIdAndUpdate(id, { isDeleted: true }, function (err, Category) {
       if (err) {
         return res.status(500).json({
           message: 'Error when deleting the Category.',
