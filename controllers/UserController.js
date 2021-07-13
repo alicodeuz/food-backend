@@ -8,6 +8,7 @@ var UserModel = require('../models/UserModel.js');
 module.exports = {
   list: function (req, res) {
     // #swagger.tags = ['Users']
+
     return UserModel.find(function (err, Users) {
       if (err) {
         return res.status(500).json({
@@ -44,6 +45,10 @@ module.exports = {
 
   create: function (req, res) {
     // #swagger.tags = ['Users']
+    // #swagger.description = 'Only Admin can update a user or User can update his account'
+    /* #swagger.security = [{
+               "apiKeyAuth": []
+        }] */
     var User = new UserModel({
       firstName: req.body.firstName,
       lastName: req.body.lastName,
@@ -69,6 +74,10 @@ module.exports = {
 
   update: function (req, res) {
     // #swagger.tags = ['Users']
+    // #swagger.description = 'Only Admin can update a user or User can update his account'
+    /* #swagger.security = [{
+               "apiKeyAuth": []
+        }] */
     var id = req.params.id;
 
     return UserModel.findOne({ _id: id }, function (err, User) {
@@ -108,6 +117,10 @@ module.exports = {
   },
   remove: function (req, res) {
     // #swagger.tags = ['Users']
+    // #swagger.description = 'Only Admin can update a user or User can update his account'
+    /* #swagger.security = [{
+               "apiKeyAuth": []
+        }] */
     var id = req.params.id;
 
     return UserModel.findByIdAndRemove(id, function (err, User) {

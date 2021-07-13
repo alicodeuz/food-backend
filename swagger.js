@@ -12,7 +12,7 @@ const doc = {
     apiKeyAuth: {
       type: 'apiKey',
       in: 'header', // can be 'header', 'query' or 'cookie'
-      name: 'X-API-KEY', // name of the header, query parameter or cookie
+      name: 'Authorization', // name of the header, query parameter or cookie
       description: 'Copy and paste token from data using "Berear token" using /auth/sign-up or /auth/login"'
     },
   },

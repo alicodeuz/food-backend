@@ -15,7 +15,7 @@
     "apiKeyAuth": {
       "type": "apiKey",
       "in": "header",
-      "name": "X-API-KEY",
+      "name": "Authorization",
       "description": "Copy and paste token from data using \"Berear token\" using /auth/sign-up or /auth/login\""
     }
   },
@@ -270,7 +270,7 @@
         "tags": [
           "Users"
         ],
-        "description": "",
+        "description": "Only Admin can update a user or User can update his account",
         "parameters": [
           {
             "name": "obj",
@@ -313,7 +313,12 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
       }
     },
     "/users/{id}": {
@@ -343,7 +348,7 @@
         "tags": [
           "Users"
         ],
-        "description": "",
+        "description": "Only Admin can update a user or User can update his account",
         "parameters": [
           {
             "name": "id",
@@ -392,13 +397,18 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
       },
       "delete": {
         "tags": [
           "Users"
         ],
-        "description": "",
+        "description": "Only Admin can update a user or User can update his account",
         "parameters": [
           {
             "name": "id",
@@ -414,7 +424,12 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
       }
     },
     "/orders/": {
