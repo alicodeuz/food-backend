@@ -2,14 +2,14 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
-  'firstName': String,
-  'lastName': String,
-  'lang': String,
-  'image': String,
-  'email': String,
-  'password': String,
-  'phone': String,
-  'address': String,
+  'firstName': { type: String, default: '' },
+  'lastName': { type: String, default: '' },
+  'lang': { type: String, default: '' },
+  'image': { type: String, default: '' },
+  'email': { type: String, default: '', required: true },
+  'password': { type: String, default: '', required: true },
+  'phone': { type: String, default: '' },
+  'address': { type: String, default: '' },
   createdAt: { type: Date, default: new Date() },
   updatedAt: { type: Date, default: new Date() },
 });
