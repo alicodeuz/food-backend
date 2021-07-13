@@ -11,6 +11,7 @@ const swaggerUi = require('swagger-ui-express')
 const swaggerFile = require('./swagger_output.json');
 const compression = require('compression');
 var app = express();
+const PORT = 8002;
 
 app.options('*', cors())
 app.use('*', cors());
@@ -44,7 +45,7 @@ app.use(function (err, req, res, next) {
 mongoose
   .connect(database, { useNewUrlParser: true, useFindAndModify: false })
   .then(() => {
-    app.listen(8002, () => console.log('App is running on port 8000'));
+    app.listen(PORT, () => console.log('App is running on port', PORT));
   })
   .catch((err) => console.log(err));
 
