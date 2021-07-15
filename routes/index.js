@@ -6,11 +6,11 @@ const ordersRoutes = require('./OrderRoutes');
 const productsRoutes = require('./ProductRoutes');
 const authRoutes = require('./AuthRoutes');
 
-router.use('/auth', authRoutes);
-router.use('/category', categoryRoutes);
-router.use('/users', usersRoutes);
-router.use('/orders', ordersRoutes);
-router.use('/products', productsRoutes);
+router.use('/api/auth', authRoutes);
+router.use('/api/category', categoryRoutes);
+router.use('/api/users', usersRoutes);
+router.use('/api/orders', ordersRoutes);
+router.use('/api/products', productsRoutes);
 
 
 module.exports = router;
