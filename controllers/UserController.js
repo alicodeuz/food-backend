@@ -6,10 +6,29 @@ var UserModel = require('../models/UserModel.js');
  * @description :: Server-side logic for managing Users.
  */
 module.exports = {
-  list: function (req, res) {
-    // #swagger.tags = ['Users']
+  me: function (req, res) {
+    // #swagger.tags = ['Users'];
+    // #swagger.description = 'Current user information'
+    /* #swagger.parameters['body'] = {    
+       in: 'body',
+       description: 'Current user information',
+       required: true,
+       type: 'obj',
+       schema: { $ref: '#/definitions/SIGN_UP' }
+    } */
+    /* #swagger.responses[200] = {
+            description: 'Response body',
+            schema: {$ref: '#/definitions/USER'}
+    } */
+    /* #swagger.responses[400] = {
+            description: 'Error messages',
+           schema: {
+              success: false,
+              msg: 'Something went wrong'
+          }
+    } */
 
-    return UserModel.find(function (err, Users) {
+    return UserModel.findById(req.locals._id, function (err, Users) {
       if (err) {
         return res.status(500).json({
           message: 'Error when getting User.',
@@ -21,11 +40,61 @@ module.exports = {
     });
   },
 
+  list: function (req, res) {
+    // #swagger.tags = ['Users']
+    // #swagger.description = 'Get all users list'
+    /* #swagger.parameters['body'] = {    
+       in: 'body',
+       description: 'Get all users list',
+       required: true,
+       type: 'obj',
+       schema: { $ref: '#/definitions/SIGN_UP' }
+    } */
+    /* #swagger.responses[200] = {
+            description: 'Response body',
+            schema: [{$ref: '#/definitions/USER'}]
+    } */
+    /* #swagger.responses[400] = {
+            description: 'Error messages',
+           schema: {
+              success: false,
+              msg: 'Something went wrong'
+          }
+    } */
+    return UserModel.find(function (err, Users) {
+      if (err) {
+        return res.status(500).json({
+          message: 'Error when getting User.',
+          error: err
+        });
+      }
+      return res.json(Users);
+    });
+  },
+
   show: function (req, res) {
     // #swagger.tags = ['Users']
     var id = req.params.id;
 
     return UserModel.findOne({ _id: id }, function (err, User) {
+      /* #swagger.parameters['body'] = {    
+       in: 'body',
+       description: 'Get user by id',
+       required: true,
+       type: 'obj',
+       schema: { $ref: '#/definitions/SIGN_UP' }
+    } */
+      /* #swagger.responses[200] = {
+              description: 'Response body',
+              schema: [{$ref: '#/definitions/USER'}]
+      } */
+      /* #swagger.responses[400] = {
+              description: 'Error messages',
+             schema: {
+                success: false,
+                msg: 'Something went wrong'
+            }
+      } */
       if (err) {
         return res.status(500).json({
           message: 'Error when getting User.',

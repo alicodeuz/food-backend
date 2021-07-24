@@ -253,14 +253,101 @@
         }
       }
     },
+    "/api/users/me": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "description": "Current user information",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Response body",
+            "schema": {
+              "$ref": "#/definitions/USER"
+            }
+          },
+          "400": {
+            "description": "Error ____FUNC____",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "msg": {
+                  "type": "string",
+                  "example": "____FUNC____thing went wrong"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
     "/api/users/": {
       "get": {
         "tags": [
           "Users"
         ],
-        "description": "",
-        "parameters": [],
+        "description": "Get all users list",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Get all users list",
+            "required": true,
+            "type": "obj",
+            "schema": {
+              "$ref": "#/definitions/SIGN_UP"
+            }
+          }
+        ],
         "responses": {
+          "200": {
+            "description": "Response body",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/USER"
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "400": {
+            "description": "Error messages",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "msg": {
+                  "type": "string",
+                  "example": "Something went wrong"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
           "500": {
             "description": "Internal Server Error"
           }
@@ -825,6 +912,59 @@
         "email",
         "password"
       ]
+    },
+    "USER": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string",
+          "example": ""
+        },
+        "lastName": {
+          "type": "string",
+          "example": ""
+        },
+        "lang": {
+          "type": "string",
+          "example": ""
+        },
+        "image": {
+          "type": "string",
+          "example": ""
+        },
+        "email": {
+          "type": "string",
+          "example": "aka@mail.ru"
+        },
+        "password": {
+          "type": "string",
+          "example": "$2b$08$cHKkEquLLVfvUpbDsVtiiuh5YDCdkurTWkC9CRCrcubcMiLZdI0M."
+        },
+        "phone": {
+          "type": "string",
+          "example": ""
+        },
+        "address": {
+          "type": "string",
+          "example": ""
+        },
+        "createdAt": {
+          "type": "string",
+          "example": "2021-07-13T14:23:25.696Z"
+        },
+        "updatedAt": {
+          "type": "string",
+          "example": "2021-07-13T14:23:25.696Z"
+        },
+        "_id": {
+          "type": "string",
+          "example": "60eda1dfcc002e668c5d4963"
+        },
+        "__v": {
+          "type": "number",
+          "example": 0
+        }
+      }
     },
     "AUTH_RESPONSE": {
       "type": "object",

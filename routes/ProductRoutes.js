@@ -7,6 +7,10 @@ var multer = require('../utils/multer');
  * GET
  */
 router.get('/', ProductController.list);
+/*
+ * GET
+ */
+router.get('/search', ProductController.search);
 
 /*
  * GET

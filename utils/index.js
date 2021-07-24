@@ -30,8 +30,8 @@ const validateToken = token => {
 
 const currentUser = async (req, res, next) => {
   const token = req.headers.authorization?.split(' ')[1];
-  const validToken = token ? this.validateToken(token) : {};
-
+  const validToken = token ? validateToken(token) : {};
+  console.log(validToken)
   if (validToken._id) {
 
     try {

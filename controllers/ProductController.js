@@ -20,6 +20,22 @@ module.exports = {
       return res.json(Products);
     });
   },
+  search: function (req, res) {
+    const { name } = req.query;
+    // #swagger.tags = ['Products']
+
+    return ProductModel.find({ name: { $regex: `^${name}`, $options: 'i' } },
+      function (err, Products) {
+        if (err) {
+          return res.status(500).json({
+            message: 'Error when getting Product.',
+            error: err
+          });
+        }
+
+        return res.json(Products);
+      });
+  },
 
   show: function (req, res) {
     // #swagger.tags = ['Products']
@@ -42,6 +58,7 @@ module.exports = {
       return res.json(Product);
     });
   },
+
 
   create: function (req, res) {
     // #swagger.tags = ['Products']

@@ -30,6 +30,20 @@ const doc = {
       phone: '',
       address: ''
     },
+    USER: {
+      "firstName": "",
+      "lastName": "",
+      "lang": "",
+      "image": "",
+      "email": "aka@mail.ru",
+      "password": "$2b$08$cHKkEquLLVfvUpbDsVtiiuh5YDCdkurTWkC9CRCrcubcMiLZdI0M.",
+      "phone": "",
+      "address": "",
+      "createdAt": "2021-07-13T14:23:25.696Z",
+      "updatedAt": "2021-07-13T14:23:25.696Z",
+      "_id": "60eda1dfcc002e668c5d4963",
+      "__v": 0
+    },
     AUTH_RESPONSE: {
       "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGVkYTFkZmNjMDAyZTY2OGM1ZDQ5NjMiLCJpYXQiOjE2MjYxODYyMDcsImV4cCI6MTYyNjIyMjIwN30.whBHL9YH-TYUHwAySlexSxkQKCAKxI6g603qwweZuEQ",
       "user": {

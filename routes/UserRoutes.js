@@ -1,10 +1,12 @@
 var express = require('express');
 var router = express.Router();
 var UserController = require('../controllers/UserController.js');
+const { currentUser } = require('../utils/index.js');
 
 /*
  * GET
  */
+router.get('/me', currentUser, UserController.me);
 router.get('/', UserController.list);
 
 /*
