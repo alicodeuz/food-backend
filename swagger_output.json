@@ -420,9 +420,50 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Get user by id",
+            "required": true,
+            "type": "obj",
+            "schema": {
+              "$ref": "#/definitions/SIGN_UP"
+            }
           }
         ],
         "responses": {
+          "200": {
+            "description": "Response body",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/USER"
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "400": {
+            "description": "Error messages",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "msg": {
+                  "type": "string",
+                  "example": "Something went wrong"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
           "404": {
             "description": "Not Found"
           },
@@ -749,6 +790,26 @@
           "201": {
             "description": "Created"
           },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/products/search": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
           "500": {
             "description": "Internal Server Error"
           }
